@@ -1,0 +1,441 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #314a57;
+  --p1-color: #2b79f7;
+  --p2-color: #49ad57;
+}
+
+/* -----------------------------------------------------Layout and backgrounds */
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol";
+  background-image: url("./background.svg"), linear-gradient(to bottom right, #a4d2ff, #a59a9e);
+  background-size: 20%, 100%;
+  min-height: 100vh;
+  background-repeat: repeat, no-repeat;
+  color: var(--primary-color);
+  font-family: sans-serif;
+  text-shadow: 0px 2px 0px rgba(0, 0, 0, 0.055);
+}
+
+a:visited {
+  color: unset;
+}
+
+div#root > div.app {
+  display: flex;
+  justify-content: center;
+  padding-left: 1rem;
+  flex-wrap: wrap;
+}
+
+div.app > * {
+  margin-right: 1rem;
+  padding: 0;
+}
+
+.previous-games {
+  flex-grow: 1;
+  max-width: 700px;
+}
+
+.current-game {
+  flex-grow: 2;
+  max-width: 700px;
+}
+
+.game,
+.match-up {
+  background: white;
+  display: block;
+  padding: 15px;
+  border: 3px solid white;
+  box-shadow: 5px 5px 15px #695b5b11, -15px -15px 20px #9693930a;
+  text-align: center;
+  margin-top: 1rem;
+  border-radius: 5px;
+}
+
+.game-heading {
+  text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.game-form {
+  background: inherit;
+  position: relative;
+  z-index: 1;
+}
+
+h1.title {
+  font-weight: 900;
+  font-size: 4rem;
+  color: #49ad57;
+  font-family: "Lobster", serif;
+  text-decoration: underline solid #2b79f7;
+}
+
+/* ------------------------------------------------------------------ Previous Games Styles */
+
+.prev-game-trans-enter {
+  transform: translateY(-400%);
+  transition: 0.25s;
+}
+
+.prev-game-trans-enter.prev-game-trans-enter-active {
+  transform: translateY(0);
+  transition: 0.25s;
+}
+
+.previous-games .game {
+  position: relative;
+}
+
+.previous-games .game h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0;
+}
+
+.previous-games small {
+  font-size: 1rem;
+}
+
+.previous-games .game h3 {
+  font-size: 1rem;
+}
+
+.previous-games .game h4 {
+  font-size: 1rem;
+}
+
+.game.p1 {
+  background: var(--p1-color);
+  color: white;
+  border-color: var(--p1-color);
+}
+.game.p2 {
+  background: var(--p2-color);
+  color: white;
+  border-color: var(--p2-color);
+}
+
+.game.p2 *,
+.game.p1 * {
+  color: white;
+}
+
+.info-links {
+  display: flex;
+  justify-content: flex-end;
+}
+/* ------------------------------------------------------------------------- Current Game Styles */
+
+.current-game .game-heading {
+  font-weight: 900;
+  font-size: 3rem;
+  font-family: "Lobster", serif;
+}
+
+.info-links a {
+  margin-left: 0.3rem;
+  font-size: 1.3rem;
+}
+
+.current-game.p1 {
+  border: 3px solid var(--p1-color);
+}
+
+.current-game.p2 {
+  border: 3px solid var(--p2-color);
+}
+
+.scores {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem;
+}
+
+.ticker {
+  position: relative;
+  overflow: hidden;
+}
+
+.ticker span {
+  display: inline-block;
+}
+
+.ticker-enter {
+  transition: 0.5s;
+  transform: translateY(100%);
+}
+
+.ticker-enter.ticker-enter-active {
+  transform: translateY(0);
+}
+
+.ticker-exit {
+  transform: translateY(0);
+  transition: 0.5s;
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+}
+
+.ticker-exit.ticker-exit-active {
+  transform: translateY(-100%);
+}
+
+.player-box {
+  width: 33%;
+}
+
+.current-game .player-box h2,
+.current-game .player-box h3 {
+  padding: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.current-game span.gins {
+  font-size: 1rem;
+}
+
+.player-box.p1 h2 {
+  border-bottom: 3px solid var(--p1-color);
+}
+
+.game.p1 .player-box h2,
+.game.p2 .player-box h2 {
+  border-bottom: 3px solid white;
+}
+
+.player-box.p2 h2 {
+  border-bottom: 3px solid var(--p2-color);
+}
+
+.round-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 0.5rem;
+  position: relative;
+  transition: 0.25s;
+}
+
+.round-row > h3,
+.round-row > h4 {
+  width: 32%;
+  padding: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.round-row span.gin:before,
+.round-row span.gin:after {
+  content: "⭐️";
+  font-size: 0.7rem;
+}
+
+button {
+  border: none;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  box-shadow: 2px 5px 15px #1816160c, -5px -5px 10px #27262607;
+  border-radius: 5px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+label.gin {
+  font-weight: bold;
+}
+
+input {
+  padding: 0.5rem;
+  background: white;
+  border: 1px solid var(--primary-color);
+  width: 40%;
+  border-radius: 5px;
+}
+
+.round-error {
+  margin: 0.5rem auto;
+  font-weight: 600;
+  color: crimson;
+}
+
+button.add-round,
+button.go-match {
+  width: 100%;
+  color: white;
+  padding: 0.5rem;
+  background: var(--primary-color);
+}
+
+button.edit-row,
+button.delete-row,
+button.delete-game {
+  display: none;
+  background-color: rgb(211, 211, 211);
+  color: var(--primary-color);
+}
+
+button.submit-row {
+  margin-right: 10px;
+  color: white;
+  background: var(--primary-color);
+}
+
+button.delete-row-edit {
+  margin-left: 10px;
+}
+
+.game-row-enter {
+  transform: translateY(-200%);
+  transition: 0.25s;
+  position: relative;
+  z-index: 0;
+}
+
+.game-row-enter.game-row-enter-active {
+  transform: translateY(0);
+  transition: 0.25s;
+  z-index: 0;
+}
+
+.round-row:hover button.edit-row {
+  display: inline;
+  position: absolute;
+  left: 0;
+}
+
+.round-row:hover button.edit-row:hover {
+  display: inline;
+  position: absolute;
+  left: 0;
+  color: white;
+  background: var(--primary-color);
+}
+
+.round-row:hover button.delete-row {
+  display: inline;
+  position: absolute;
+  right: 0;
+}
+
+button.delete-row-edit:hover {
+  color: white;
+  background-color: rgb(179, 15, 15);
+  border: 1px solid rgb(179, 15, 15);
+}
+
+.round-row:hover button.delete-row:hover {
+  display: inline;
+  position: absolute;
+  right: 0;
+  color: white;
+  background-color: rgb(179, 15, 15);
+  border: 1px solid rgb(179, 15, 15);
+}
+
+li.game:hover button.delete-game {
+  display: inline;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  padding: 2px 5px;
+  background: none;
+  color: white;
+  font-weight: bold;
+  border: none;
+}
+
+li.game:hover button.delete-game:hover {
+  background-color: rgb(179, 15, 15);
+  border: 1px solid rgb(179, 15, 15);
+}
+
+.p1 {
+  color: var(--p1-color);
+}
+
+.p2 {
+  color: var(--p2-color);
+}
+
+.p1 button.new-game {
+  width: 100%;
+  color: var(--p1-color);
+  background: white;
+}
+
+.p2 button.new-game {
+  width: 100%;
+  color: var(--p2-color);
+  background: white;
+}
+
+.p1 .round-row input,
+.p2 .round-row input {
+  color: rgb(0, 0, 0);
+}
+
+.previous-games .gins {
+  font-size: 0.7rem;
+}
+
+/* ----------------------------------------------------------------------Match Up Screen */
+
+.match-up {
+  flex-grow: 2;
+  max-width: 700px;
+  margin: 50px auto;
+  background: white;
+  display: block;
+  padding: 15px;
+  border: 3px solid white;
+  box-shadow: 5px 5px 15px #695b5b31, -15px -15px 20px #96939334;
+  text-align: center;
+  transition: 0.25s;
+}
+
+.match-up > *,
+.match-up form > * {
+  margin-bottom: 1rem;
+}
+
+.match-up form .wrap {
+  display: flex;
+  justify-content: space-between;
+}
+
+.match-up form .wrap .form-group {
+  width: 45%;
+  padding: 1rem 0;
+}
+
+.match-up .form-group * {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.match-up input {
+  padding: 0.5rem;
+  background: white;
+  border: 1px solid var(--primary-color);
+}
+
+.match-up .form-group label {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
